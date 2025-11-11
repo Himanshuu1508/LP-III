@@ -16,6 +16,7 @@ class Huffman_Encoding:
         self.q = [] #priority queue
         self.string = string 
         self.encoding = {} #dictionary to store encoding
+        self.freq_map = {} #dictionary to store frequency of each character
 
     def char_frequency(self): #calculate frequency of each character
         count = {}
@@ -27,6 +28,7 @@ class Huffman_Encoding:
         for char,value in count.items(): #create node for each character
             node = Node(value=char,frequency=value)
             self.q.append(node) #add node to priority queue
+            self.freq_map[char] = value  #store frequency separately
         self.q.sort(key=lambda x: x.frequency)    #sort queue based on frequency
 
     def build_tree(self): #build huffman tree
@@ -55,10 +57,10 @@ class Huffman_Encoding:
 
 
     def print_encoding(self): #print the encoding
-        print(' Char | Huffman code ')  #header
-        print('----------------------')
+        print(' Char | Frequency | Huffman code ')  
+        print('----------------------------------')
         for char,binary in self.encoding.items(): 
-            print(" %-4r |%12s" % (char,binary))   #print each character and its code
+            print(" %-4r | %9d | %12s" % (char,self.freq_map[char],binary))   #print each character, frequency and its code
     
     def encode(self):
         self.char_frequency()
@@ -74,5 +76,5 @@ encode.encode()
 
 # The time complexity for encoding each unique character based on its frequency is O(nlog n).
 
-# Extracting minimum frequency from the priority queue takes place 2*(n-1) times and its complexity is O(log n). Thus the overall complexity is O(nlog n).
-
+# Extracting minimum frequency from the priority queue takes place 2*(n-1) times and its complexity is O(log n). 
+# Thus the overall complexity is O(nlog n).
