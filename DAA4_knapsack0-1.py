@@ -56,7 +56,7 @@ max_value, included_items = knapsack(W, val, wt)
 print(f"\n Maximum value that can be carried: {max_value}")
 
 if len(val) != n or len(wt) != n:
-    print("\n❌ Error: Number of values and weights must match the number of items.")
+    print("\n Error: Number of values and weights must match the number of items.")
 else:
     # Compute maximum value and included items
     max_value, included_items = knapsack(W, val, wt)
@@ -69,3 +69,4 @@ else:
         print("\nNo items were included (possibly all items too heavy).")
 #time complexity: O(n*W)
 #space complexity: O(n*W)
+
